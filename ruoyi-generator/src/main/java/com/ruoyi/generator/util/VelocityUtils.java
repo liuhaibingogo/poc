@@ -1,9 +1,7 @@
 package com.ruoyi.generator.util;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import org.apache.velocity.VelocityContext;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
@@ -263,6 +261,12 @@ public class VelocityUtils
             else if (!column.isSuperColumn() && GenConstants.TYPE_BIGDECIMAL.equals(column.getJavaType()))
             {
                 importList.add("java.math.BigDecimal");
+            }
+            if(Objects.equals(column.getIsPk(), "1") ){
+                importList.add("com.baomidou.mybatisplus.annotation.TableId");
+                if(Objects.equals(column.getIsIncrement(), "1")) {
+                    importList.add("com.baomidou.mybatisplus.annotation.IdType");
+                }
             }
         }
         return importList;
