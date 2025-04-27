@@ -18,8 +18,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-<!--        <mybatis-spring-boot.version>3.0.3</mybatis-spring-boot.version>-->
-        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <mybatis-spring-boot.version>3.0.3</mybatis-spring-boot.version>
+<!--        <mybatis-plus.version>3.2.0</mybatis-plus.version>-->
         <druid.version>1.2.23</druid.version>
         <bitwalker.version>1.21</bitwalker.version>
         <swagger.version>3.0.0</swagger.version>
@@ -156,6 +156,11 @@
                 <groupId>com.ruoyi</groupId>
                 <artifactId>ruoyi-quartz</artifactId>
                 <version>${ruoyi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.jvm</groupId>
+                <artifactId>dtfjview</artifactId>
+                <version>9.0.0</version> <!-- 替换为实际的版本号 -->
             </dependency>
 
             <!-- 代码生成-->

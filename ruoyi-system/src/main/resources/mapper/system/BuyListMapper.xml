@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.BuyListMapper">
+    
+    <resultMap type="BuyList" id="BuyListResult">
+        <result property="ID"    column="ID"    />
+        <result property="assetType"    column="ASSET_TYPE"    />
+        <result property="productCode"    column="PRODUCT_CODE"    />
+        <result property="MAKER"    column="MAKER"    />
+        <result property="modDatetime"    column="MOD_DATETIME"    />
+        <result property="CHECKER"    column="CHECKER"    />
+        <result property="chckerDatetime"    column="CHCKER_DATETIME"    />
+        <result property="STATUS"    column="STATUS"    />
+    </resultMap>
+
+    <sql id="selectBuyListVo">
+        select ID, ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS from buyList
+    </sql>
+
+    <select id="selectBuyListList" parameterType="BuyList" resultMap="BuyListResult">
+        <include refid="selectBuyListVo"/>
+        <where>  
+            <if test="STATUS != null  and STATUS != ''"> and STATUS = #{STATUS}</if>
+        </where>
+    </select>
+    
+</mapper>
