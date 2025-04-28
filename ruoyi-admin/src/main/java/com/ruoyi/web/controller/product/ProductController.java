@@ -94,6 +94,14 @@ public class ProductController extends BaseController
     {
         return toAjax(productService.insertProduct(productVos, String.valueOf(getUserId())));
     }
+
+    @Log(title = "BuyList", businessType = BusinessType.INSERT)
+    @PreAuthorize("@ss.hasPermi('tool:product:list')")
+    @PostMapping("/update")
+    public AjaxResult update(@RequestBody List<ProductVo> productVos)
+    {
+        return toAjax(productService.insertProduct(productVos, String.valueOf(getUserId())));
+    }
     /**
      * 修改清单列表
      */
