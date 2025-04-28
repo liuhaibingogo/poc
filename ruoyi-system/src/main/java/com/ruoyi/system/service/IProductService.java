@@ -2,6 +2,7 @@ package com.ruoyi.system.service;
 
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ruoyi.system.domain.BuyList;
 import com.ruoyi.system.domain.Product;
 import com.ruoyi.system.domain.vo.ProductVo;
 
@@ -29,6 +30,9 @@ public interface IProductService extends IService<Product>
      */
     public List<Product> selectProductList(Product product);
 
+
+    public List<BuyList> selectBuyList(String[] buyListIds);
+
     /**
      * 新增清单列表
      * 
@@ -37,7 +41,7 @@ public interface IProductService extends IService<Product>
      */
     public int insertProduct(Product product);
 
-    public int insertProduct(List<ProductVo> productVos);
+    public int insertProduct(List<ProductVo> productVos,String buyListId);
     /**
      * 修改清单列表
      * 

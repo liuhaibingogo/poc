@@ -4,6 +4,8 @@ import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.utils.bean.BeanUtils;
 import com.ruoyi.system.domain.vo.ProductVo;
+import com.ruoyi.system.mapper.BuyListMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -24,6 +26,8 @@ import com.ruoyi.system.service.IProductService;
 @Service
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements IProductService
 {
+    @Autowired
+    private BuyListMapper buyListMapper;
 
     /**
      * 查询清单列表
@@ -49,6 +53,11 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         return baseMapper.selectProductList(product);
     }
 
+    @Override
+    public List<BuyList> selectBuyList(String[] buyListIds) {
+        return buyListMapper.selectByIds(buyListIds);
+    }
+
     /**
      * 新增清单列表
      * 
@@ -66,12 +75,18 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Override
     @Transactional
-    public int insertProduct(List<ProductVo> productVos) {
+    public int insertProduct(List<ProductVo> productVos,String buyListId) {
         int rows = 0;
         List<BuyList> buyLists = new ArrayList<>();
+        Product product = new Product();
+        product.setID(generateId());
+        product.setStatus("1");
+        product.setMAKER(buyListId);
+        baseMapper.insertProduct(product);
         productVos.forEach(productVo -> {
             BuyList buyList = new BuyList();
             buyList.setID(UUID.randomUUID().toString().replace("-",""));
+            buyList.setProductId(product.getID());
             buyList.setProductCode(productVo.getProductCode());
             buyList.setAssetType(productVo.getAssetType());
             buyList.setMAKER(productVo.getMAKER());
@@ -79,10 +94,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             buyList.setCHECKER(productVo.getCHECKER());
             buyList.setSTATUS("1");
             buyLists.add(buyList);
-            Product product = new Product();
-            BeanUtils.copyProperties(productVo, product);
-            product.setID(generateId());
-            baseMapper.insertProduct(product);
         });
         try {
             rows=baseMapper.batchBuyList(buyLists);

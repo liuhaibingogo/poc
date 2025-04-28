@@ -25,34 +25,36 @@ public class BuyList implements Serializable {
     @TableId(type = IdType.AUTO)
     private String ID;
 
+    private String productId;
+
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "assetType", readConverterExp = "assetType")
     private String assetType;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "productCode", readConverterExp = "productCode")
     private String productCode;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "MAKER", readConverterExp = "MAKER")
     private String MAKER;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-@JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "modDatetime", readConverterExp = "modDatetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modDatetime;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "CHECKER", readConverterExp = "CHECKER")
     private String CHECKER;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-@JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "chckerDatetime", readConverterExp = "chckerDatetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date chckerDatetime;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "STATUS", readConverterExp = "STATUS")
     private String STATUS;
 
 }

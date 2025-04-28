@@ -7,8 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="Product" id="ProductResult">
         <result property="ID"    column="ID"    />
         <result property="buyList"    column="buyList"    />
-        <result property="buyListID"    column="buyListID"    />
         <result property="status"    column="status"    />
+        <result property="MAKER"    column="MAKER"    />
+        <result property="modDatetime"    column="MOD_DATETIME"    />
+        <result property="CHECKER"    column="CHECKER"    />
+        <result property="chckerDatetime"    column="CHCKER_DATETIME"    />
     </resultMap>
 
     <resultMap id="ProductBuyListResult" type="Product" extends="ProductResult">
@@ -27,20 +30,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectProductVo">
-        select ID, buyList, buyListID, status from product
+        select ID, BUYLIST, status, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME from product
     </sql>
 
     <select id="selectProductList" parameterType="Product" resultMap="ProductResult">
         <include refid="selectProductVo"/>
-        <where>  
+        <where>
             <if test="ID != null  and ID != ''"> and ID = #{ID}</if>
-            <if test="buyList != null  and buyList != ''"> and buyList = #{buyList}</if>
+            <if test="buyList != null  and BUYLIST != ''"> and BUYLIST = #{BUYLIST}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="MAKER != null  and MAKER != ''"> and MAKER = #{MAKER}</if>
+            <if test="modDatetime != null "> and MOD_DATETIME = #{modDatetime}</if>
+            <if test="CHECKER != null  and CHECKER != ''"> and CHECKER = #{CHECKER}</if>
+            <if test="chckerDatetime != null "> and CHCKER_DATETIME = #{chckerDatetime}</if>
         </where>
     </select>
     
     <select id="selectProductByID" parameterType="String" resultMap="ProductBuyListResult">
-        select ID, buyList, buyListID, status
+        select ID, buyList, status
         from product
         where ID = #{ID}
     </select>
@@ -56,13 +63,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="ID != null">ID,</if>
             <if test="buyList != null">buyList,</if>
-            <if test="buyListID != null">buyListID,</if>
             <if test="status != null">status,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ID != null">#{ID},</if>
             <if test="buyList != null">#{buyList},</if>
-            <if test="buyListID != null">#{buyListID},</if>
             <if test="status != null">#{status},</if>
          </trim>
     </insert>
@@ -71,7 +76,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update product
         <trim prefix="SET" suffixOverrides=",">
             <if test="buyList != null">buyList = #{buyList},</if>
-            <if test="buyListID != null">buyListID = #{buyListID},</if>
             <if test="status != null">status = #{status},</if>
         </trim>
         where ID = #{ID}

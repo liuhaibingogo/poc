@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="BuyList" id="BuyListResult">
         <result property="ID"    column="ID"    />
+        <result property="productId"    column="productId"    />
         <result property="assetType"    column="ASSET_TYPE"    />
         <result property="productCode"    column="PRODUCT_CODE"    />
         <result property="MAKER"    column="MAKER"    />
@@ -16,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectBuyListVo">
-        select ID, ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS from buyList
+        select ID,PRODUCTID,ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS from buyList
     </sql>
 
     <select id="selectBuyListList" parameterType="BuyList" resultMap="BuyListResult">
@@ -25,5 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="STATUS != null  and STATUS != ''"> and STATUS = #{STATUS}</if>
         </where>
     </select>
-    
+
+    <select id="selectByIds" parameterType="BuyList" resultMap="BuyListResult">
+        <include refid="selectBuyListVo"/>
+        <where>
+            id IN
+        </where>
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

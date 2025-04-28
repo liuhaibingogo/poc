@@ -14,7 +14,7 @@ public class ProductVo {
 
     private String buyList;
 
-    private String buyListID;
+    private String productId;
 
     private String assetType;
 
@@ -53,12 +53,12 @@ public class ProductVo {
         this.buyList = buyList;
     }
 
-    public String getBuyListID() {
-        return buyListID;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setBuyListID(String buyListID) {
-        this.buyListID = buyListID;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getAssetType() {

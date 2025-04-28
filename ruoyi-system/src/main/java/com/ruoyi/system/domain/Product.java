@@ -1,7 +1,9 @@
 package com.ruoyi.system.domain;
 
+import java.util.Date;
 import java.util.List;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 import com.ruoyi.common.annotation.Excel;
@@ -22,20 +24,33 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "ID", readConverterExp = "ID")
     private String ID;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "buyList", readConverterExp = "buyList")
     private String buyList;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-    private String buyListID;
+    @Excel(name = "status", readConverterExp = "status")
+    private String status;
+    /** $column.columnComment */
+    @Excel(name = "MAKER", readConverterExp = "MAKER")
+    private String MAKER;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-    private String status;
+    @Excel(name = "modDatetime", readConverterExp = "modDatetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date modDatetime;
+
+    /** $column.columnComment */
+    @Excel(name = "CHECKER", readConverterExp = "CHECKER")
+    private String CHECKER;
+
+    /** $column.columnComment */
+    @Excel(name = "chckerDatetime", readConverterExp = "chckerDatetime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date chckerDatetime;
 
     /** 采购清单信息 */
     @TableField(exist = false)

@@ -21,4 +21,6 @@ public interface BuyListMapper extends BaseMapper<BuyList>
      */
     public List<BuyList> selectBuyListList(BuyList buyList);
 
+    public List<BuyList> selectByIds(String[] buyListIds);
+
 }
