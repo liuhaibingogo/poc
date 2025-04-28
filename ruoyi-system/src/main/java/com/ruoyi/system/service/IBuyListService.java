@@ -18,7 +18,7 @@ public interface IBuyListService extends IService<BuyList>
      * @param ID 采购清单主键
      * @return 采购清单
      */
-    public BuyList selectBuyListByID(Long ID);
+    public BuyList selectBuyListByID(String ID);
 
     /**
      * 查询采购清单列表

@@ -31,7 +31,7 @@ public interface IProductService extends IService<Product>
     public List<Product> selectProductList(Product product);
 
 
-    public List<BuyList> selectBuyList(String[] buyListIds);
+    public List<BuyList> selectBuyListByProductId(String Id);
 
     /**
      * 新增清单列表

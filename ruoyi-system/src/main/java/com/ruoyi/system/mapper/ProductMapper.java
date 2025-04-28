@@ -4,6 +4,7 @@ import java.util.List;
 import com.ruoyi.system.domain.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.BuyList;
+import com.ruoyi.system.domain.vo.ProductVo;
 
 /**
  * 清单列表Mapper接口
@@ -30,6 +31,7 @@ public interface ProductMapper extends BaseMapper<Product>
      */
     public List<Product> selectProductList(Product product);
 
+    public List<BuyList> selectByProductId(String productId);
     /**
      * 新增清单列表
      *

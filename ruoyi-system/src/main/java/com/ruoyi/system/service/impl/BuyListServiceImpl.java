@@ -37,7 +37,7 @@ public class BuyListServiceImpl extends ServiceImpl<BuyListMapper, BuyList> impl
      * @return 采购清单
      */
     @Override
-    public BuyList selectBuyListByID(Long ID)
+    public BuyList selectBuyListByID(String ID)
     {
         return baseMapper.selectById(ID);
     }

@@ -46,10 +46,10 @@ public class ProductController extends BaseController
 
     @PreAuthorize("@ss.hasPermi('tool:product:list')")
     @GetMapping("/buylist")
-    public TableDataInfo buylist(String[] buyListIds)
+    public TableDataInfo buylist(String productId)
     {
         startPage();
-        List<BuyList> list = productService.selectBuyList(buyListIds);
+        List<BuyList> list = productService.selectBuyListByProductId(productId);
         return getDataTable(list);
     }
 

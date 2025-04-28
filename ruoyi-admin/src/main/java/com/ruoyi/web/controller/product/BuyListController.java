@@ -76,7 +76,7 @@ public class BuyListController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:buyList:query')")
     @GetMapping(value = "/{ID}")
-    public AjaxResult getInfo(@PathVariable("ID") Long ID)
+    public AjaxResult getInfo(@PathVariable("ID") String ID)
     {
         return success(buyListService.selectBuyListByID(ID));
     }

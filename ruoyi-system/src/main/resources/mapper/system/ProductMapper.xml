@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <resultMap type="BuyList" id="BuyListResult">
         <result property="ID"    column="ID"    />
+        <result property="productId"    column="PRODUCTID"    />
         <result property="assetType"    column="ASSET_TYPE"    />
         <result property="productCode"    column="PRODUCT_CODE"    />
         <result property="MAKER"    column="MAKER"    />
@@ -47,12 +48,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="selectProductByID" parameterType="String" resultMap="ProductBuyListResult">
-        select ID, buyList, status
+        select ID, buyList, status,MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME
         from product
         where ID = #{ID}
     </select>
 
     <select id="selectBuyListList" resultType="BuyList" resultMap="BuyListResult">
+        select ID,PRODUCTID,ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS
+        from buyList
+        where PRODUCTID = #{productId}
+    </select>
+
+    <select id="selectByProductId" resultType="BuyList" resultMap="BuyListResult">
         select ID, ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS
         from buyList
         where ID = #{ID}

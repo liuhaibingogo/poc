@@ -54,8 +54,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public List<BuyList> selectBuyList(String[] buyListIds) {
-        return buyListMapper.selectByIds(buyListIds);
+    public List<BuyList> selectBuyListByProductId(String productId) {
+        return baseMapper.selectByProductId(productId);
     }
 
     /**
