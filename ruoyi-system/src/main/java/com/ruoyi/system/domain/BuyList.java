@@ -57,4 +57,75 @@ public class BuyList implements Serializable {
     @Excel(name = "STATUS", readConverterExp = "STATUS")
     private String STATUS;
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getMAKER() {
+        return MAKER;
+    }
+
+    public void setMAKER(String MAKER) {
+        this.MAKER = MAKER;
+    }
+
+    public Date getModDatetime() {
+        return modDatetime;
+    }
+
+    public void setModDatetime(Date modDatetime) {
+        this.modDatetime = modDatetime;
+    }
+
+    public String getCHECKER() {
+        return CHECKER;
+    }
+
+    public void setCHECKER(String CHECKER) {
+        this.CHECKER = CHECKER;
+    }
+
+    public Date getChckerDatetime() {
+        return chckerDatetime;
+    }
+
+    public void setChckerDatetime(Date chckerDatetime) {
+        this.chckerDatetime = chckerDatetime;
+    }
+
+    public String getSTATUS() {
+        return STATUS;
+    }
+
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
+    }
 }

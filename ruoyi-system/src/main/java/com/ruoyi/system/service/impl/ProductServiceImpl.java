@@ -1,5 +1,6 @@
 package com.ruoyi.system.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.utils.bean.BeanUtils;
@@ -82,6 +83,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         product.setID(generateId());
         product.setStatus("1");
         product.setMAKER(buyListId);
+        product.setBuyList("Buy List A");
+        product.setModDatetime(new Date());
         baseMapper.insertProduct(product);
         productVos.forEach(productVo -> {
             BuyList buyList = new BuyList();
@@ -89,9 +92,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             buyList.setProductId(product.getID());
             buyList.setProductCode(productVo.getProductCode());
             buyList.setAssetType(productVo.getAssetType());
-            buyList.setMAKER(productVo.getMAKER());
-            buyList.setModDatetime(productVo.getModDatetime());
-            buyList.setCHECKER(productVo.getCHECKER());
+            product.setMAKER(buyListId);
+            product.setModDatetime(new Date());
+//            buyList.setCHECKER(productVo.getCHECKER());
             buyList.setSTATUS("1");
             buyLists.add(buyList);
         });
@@ -124,6 +127,38 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         insertBuyList(product);
         return baseMapper.updateById(product);
     }
+
+    @Override
+    public int updateProduct(List<ProductVo> productVos, String buyListId) {
+        int rows = 0;
+        List<BuyList> buyLists = new ArrayList<>();
+        Product product = new Product();
+        product.setID(productVos.get(0).getID());
+        product.setStatus("2");
+        product.setMAKER(buyListId);
+        product.setModDatetime(new Date());
+        baseMapper.updateProduct(product);
+        try {
+            productVos.forEach(productVo -> {
+            BuyList buyList = new BuyList();
+            buyList.setID(productVo.getID());
+            buyList.setProductId(product.getID());
+            buyList.setProductCode(productVo.getProductCode());
+            buyList.setAssetType(productVo.getAssetType());
+//            buyList.setMAKER(productVo.getMAKER());
+//            buyList.setModDatetime(new Date());
+            buyList.setCHECKER(buyListId);
+            buyList.setChckerDatetime(new Date());
+            buyList.setSTATUS("2");
+//            buyLists.add(buyList);
+            buyListMapper.updateById(buyList);
+        });
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rows;
+    }
+
 
     /**
      * 批量删除清单列表

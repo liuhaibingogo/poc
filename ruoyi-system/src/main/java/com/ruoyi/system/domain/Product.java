@@ -60,4 +60,60 @@ public class Product implements Serializable {
     @TableField(exist = false)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, Object> params;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getBuyList() {
+        return buyList;
+    }
+
+    public void setBuyList(String buyList) {
+        this.buyList = buyList;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getMAKER() {
+        return MAKER;
+    }
+
+    public void setMAKER(String MAKER) {
+        this.MAKER = MAKER;
+    }
+
+    public Date getModDatetime() {
+        return modDatetime;
+    }
+
+    public void setModDatetime(Date modDatetime) {
+        this.modDatetime = modDatetime;
+    }
+
+    public String getCHECKER() {
+        return CHECKER;
+    }
+
+    public void setCHECKER(String CHECKER) {
+        this.CHECKER = CHECKER;
+    }
+
+    public Date getChckerDatetime() {
+        return chckerDatetime;
+    }
+
+    public void setChckerDatetime(Date chckerDatetime) {
+        this.chckerDatetime = chckerDatetime;
+    }
 }

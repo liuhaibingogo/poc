@@ -50,6 +50,8 @@ public interface IProductService extends IService<Product>
      */
     public int updateProduct(Product product);
 
+    public int updateProduct(List<ProductVo> productVos,String buyListId);
+
     /**
      * 批量删除清单列表
      * 

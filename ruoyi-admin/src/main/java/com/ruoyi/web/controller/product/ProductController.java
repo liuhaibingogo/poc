@@ -92,7 +92,12 @@ public class ProductController extends BaseController
     @PostMapping("/save")
     public AjaxResult save(@RequestBody List<ProductVo> productVos)
     {
-        return toAjax(productService.insertProduct(productVos, String.valueOf(getUserId())));
+        ProductVo productVo = productVos.get(0);
+        if(productVo.getSTATUS().equals("0")||productVo.getSTATUS().isBlank()){
+            return toAjax(productService.insertProduct(productVos, String.valueOf(getUsername())));
+        }else {
+            return toAjax(productService.updateProduct(productVos,String.valueOf(getUsername())));
+        }
     }
 
     @Log(title = "BuyList", businessType = BusinessType.INSERT)

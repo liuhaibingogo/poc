@@ -60,9 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="selectByProductId" resultType="BuyList" resultMap="BuyListResult">
-        select ID, ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS
+        select ID, PRODUCTID,ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS
         from buyList
-        where ID = #{ID}
+        where PRODUCTID = #{productId}
     </select>
 
     <insert id="insertProduct" parameterType="Product">
@@ -71,12 +71,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="ID != null">ID,</if>
             <if test="buyList != null">buyList,</if>
             <if test="status != null">status,</if>
-         </trim>
+            <if test="MAKER != null">MAKER,</if>
+            <if test="modDatetime != null">mod_Datetime,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ID != null">#{ID},</if>
             <if test="buyList != null">#{buyList},</if>
             <if test="status != null">#{status},</if>
-         </trim>
+            <if test="MAKER != null">#{MAKER},</if>
+            <if test="modDatetime != null">#{modDatetime},</if>
+        </trim>
     </insert>
 
     <update id="updateProduct" parameterType="Product">
@@ -84,6 +88,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="buyList != null">buyList = #{buyList},</if>
             <if test="status != null">status = #{status},</if>
+            <if test="MAKER != null">buyList = #{MAKER},</if>
+            <if test="modDatetime != null">#{mod_Datetime},</if>product
+            <if test="CHECKER != null">buyList = #{CHECKER},</if>
+            <if test="chckerDatetime != null">checker_Datetime=#{chckerDatetime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="buyList != null">buyList = #{buyList},</if>
         </trim>
         where ID = #{ID}
     </update>
@@ -111,9 +121,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <insert id="batchBuyList">
-        insert into buyList( ID, ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS) values
+        insert into buyList( ID, PRODUCTID,ASSET_TYPE, PRODUCT_CODE, MAKER, MOD_DATETIME, CHECKER, CHCKER_DATETIME, STATUS) values
         <foreach item="item" index="index" collection="list" separator=",">
-            ( #{item.ID}, #{item.assetType}, #{item.productCode}, #{item.MAKER}, #{item.modDatetime}, #{item.CHECKER}, #{item.chckerDatetime}, #{item.STATUS})
+            ( #{item.ID}, #{item.productId},#{item.assetType}, #{item.productCode}, #{item.MAKER}, #{item.modDatetime}, #{item.CHECKER}, #{item.chckerDatetime}, #{item.STATUS})
         </foreach>
     </insert>
 </mapper>

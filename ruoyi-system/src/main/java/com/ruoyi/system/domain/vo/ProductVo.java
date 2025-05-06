@@ -3,14 +3,13 @@ package com.ruoyi.system.domain.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ruoyi.common.annotation.Excel;
 
 import java.util.Date;
 
 public class ProductVo {
 
     @TableId(type = IdType.AUTO)
-    private Long ID;
+    private String ID;
 
     private String buyList;
 
@@ -37,11 +36,11 @@ public class ProductVo {
 
     private String STATUS;
 
-    public Long getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(Long ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
